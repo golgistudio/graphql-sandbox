@@ -2,6 +2,8 @@ const typeDefs = `
 type Query {
   users: [User]
   todos: [Todo]
+  userById(id: ID): User
+  completed: [Todo]
 }
 
 type Geo {

@@ -5,11 +5,8 @@ import https from 'https'
 import http from 'http'
 
 const dotenv = require('dotenv').config();
-console.log(process.env)
-const typeDefsPath = process.env.GRAPHQL_SCHEMAS;
-const resolverPath = process.env.GRAPHQL_RESOLVERS;
 
-import typeDefs from './schemas'; 
+import typeDefs from "./schemas"; 
 import resolvers from './resolvers';
 
 const configurations = {
