@@ -8,9 +8,9 @@ jest.mock('modules/client', () => ({
 }));
 
 describe('github', () => {
-  it('should have the expected watchers', done => expectSaga(github)
+  it('should have the expected watchers', (done) => expectSaga(github)
     .run({ silenceTimeout: true })
-    .then(saga => {
+    .then((saga) => {
       expect(saga).toMatchSnapshot();
       done();
     }));

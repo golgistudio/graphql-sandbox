@@ -1,5 +1,5 @@
-import reducer from 'reducers/app';
-import { hideAlert, showAlert } from 'actions/app';
+import reducer from 'state/reducers/app';
+import { hideAlert, showAlert } from 'state/actions/app';
 import { ActionTypes } from 'constants/index';
 
 describe('App', () => {

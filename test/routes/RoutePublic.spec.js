@@ -9,7 +9,7 @@ describe('modules/RoutePublic', () => {
       <Router initialEntries={['/login']}>
         <RoutePublic
           exact
-          path='/login'
+          path="/login"
           component={() => (<div>LOGIN</div>)}
           isAuthenticated={false}
         />
@@ -24,9 +24,9 @@ describe('modules/RoutePublic', () => {
       <Router initialEntries={['/login']}>
         <RoutePublic
           exact
-          path='/login'
+          path="/login"
           component={() => (<div>LOGIN</div>)}
-          isAuthenticated={true}
+          isAuthenticated
         />
       </Router>
     );

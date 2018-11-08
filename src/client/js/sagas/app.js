@@ -2,7 +2,9 @@
  * @module Sagas/GitHub
  * @desc GitHub
  */
-import { all, put, select, takeLatest } from 'redux-saga/effects';
+import {
+  all, put, select, takeLatest
+} from 'redux-saga/effects';
 
 import { ActionTypes } from 'constants/index';
 
@@ -14,7 +16,7 @@ import { ActionTypes } from 'constants/index';
  */
 export function* switchMenu({ payload }) {
   try {
-    const repos = yield select(state => state.github.repos);
+    const repos = yield select((state) => state.github.repos);
 
     if (!repos.data[payload.query] || !repos.data[payload.query].length) {
       yield put({
@@ -22,8 +24,7 @@ export function* switchMenu({ payload }) {
         payload,
       });
     }
-  }
-  catch (err) {
+  } catch (err) {
     /* istanbul ignore next */
     yield put({
       type: ActionTypes.EXCEPTION,

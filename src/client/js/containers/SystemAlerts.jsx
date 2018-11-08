@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { hideAlert } from 'actions';
+import { hideAlert } from 'state/actions';
 
 import Transition from 'components/Transition';
 import Alert from 'components/Alert';
@@ -23,7 +23,7 @@ export default class SystemAlerts extends React.Component {
 
     /* istanbul ignore else */
     if (nextAlerts.length) {
-      nextAlerts.forEach(d => {
+      nextAlerts.forEach((d) => {
         if (d.timeout && !this.timeouts[d.id]) {
           this.timeouts[d.id] = setTimeout(() => {
             dispatch(hideAlert(d.id));
@@ -34,7 +34,7 @@ export default class SystemAlerts extends React.Component {
   }
 
   componentWillUnmount() {
-    Object.keys(this.timeouts).forEach(d => {
+    Object.keys(this.timeouts).forEach((d) => {
       clearTimeout(this.timeouts[d]);
     });
   }
@@ -49,13 +49,13 @@ export default class SystemAlerts extends React.Component {
 
   renderAlerts(position) {
     const { alerts } = this.props;
-    const items = alerts.filter(d => d.position === position);
+    const items = alerts.filter((d) => d.position === position);
 
     if (!items.length) {
       return null;
     }
 
-    return items.map(d => (
+    return items.map((d) => (
       <Alert
         key={d.id}
         id={d.id}
@@ -70,34 +70,34 @@ export default class SystemAlerts extends React.Component {
 
   render() {
     return (
-      <div key='SystemAlerts' className='app__system-alerts'>
-        <div className='app__system-alerts__top'>
-          <Transition classNames='transition-slide-down'>
+      <div key="SystemAlerts" className="app__system-alerts">
+        <div className="app__system-alerts__top">
+          <Transition classNames="transition-slide-down">
             {this.renderAlerts('top')}
           </Transition>
         </div>
-        <div className='app__system-alerts__top-left'>
-          <Transition classNames='transition-slide-right'>
+        <div className="app__system-alerts__top-left">
+          <Transition classNames="transition-slide-right">
             {this.renderAlerts('top-left')}
           </Transition>
         </div>
-        <div className='app__system-alerts__top-right'>
-          <Transition classNames='transition-slide-left'>
+        <div className="app__system-alerts__top-right">
+          <Transition classNames="transition-slide-left">
             {this.renderAlerts('top-right')}
           </Transition>
         </div>
-        <div className='app__system-alerts__bottom'>
-          <Transition classNames='transition-slide-up'>
+        <div className="app__system-alerts__bottom">
+          <Transition classNames="transition-slide-up">
             {this.renderAlerts('bottom')}
           </Transition>
         </div>
-        <div className='app__system-alerts__bottom-left'>
-          <Transition classNames='transition-slide-right'>
+        <div className="app__system-alerts__bottom-left">
+          <Transition classNames="transition-slide-right">
             {this.renderAlerts('bottom-left')}
           </Transition>
         </div>
-        <div className='app__system-alerts__bottom-right'>
-          <Transition classNames='transition-slide-left'>
+        <div className="app__system-alerts__bottom-right">
+          <Transition classNames="transition-slide-left">
             {this.renderAlerts('bottom-right')}
           </Transition>
         </div>

@@ -14,7 +14,7 @@ export default {
       alerts: { $set: [] },
     }),
     [ActionTypes.HIDE_ALERT]: (state, { payload: { id } }) => {
-      const alerts = state.alerts.filter(d => d.id !== id);
+      const alerts = state.alerts.filter((d) => d.id !== id);
 
       return immutable(state, {
         alerts: { $set: alerts },

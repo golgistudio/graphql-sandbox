@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
-import { login } from 'actions/index';
-import { Button, Themer, TextField } from 'tfs-ui';
+import { login } from 'state/actions/index';
+import Button from 'components/Button';
 
 class HomeComponent extends React.Component { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -14,13 +14,13 @@ class HomeComponent extends React.Component { // eslint-disable-line react/prefe
 
     this.name = 'Home';
 
-    this.onChange = this.onChange.bind(this);
+    //this.onChange = this.onChange.bind(this);
     this.handleClickLogin = this.handleClickLogin.bind(this);
   }
 
-  componentWillMount() {
-    Themer.theme = 'tools';
-  }
+  // componentWillMount() {
+  //   Themer.theme = 'tools';
+  // }
 
   componentDidMount() {
     const { username, onSubmitForm } = this.props;
@@ -38,11 +38,11 @@ class HomeComponent extends React.Component { // eslint-disable-line react/prefe
   };
 
 
-  onChange(e) {
-    const value = e.target.value || '';
-    Themer.theme = value;
-    this.forceUpdate();
-  }
+  // onChange(e) {
+  //   const value = e.target.value || '';
+  //   Themer.theme = value;
+  //   this.forceUpdate();
+  // }
 
   render() {
     const { user } = this.props;
@@ -50,7 +50,7 @@ class HomeComponent extends React.Component { // eslint-disable-line react/prefe
       <article>
         <Helmet>
           <title>Home Page</title>
-          <meta name='description' content='A demo application to show capabilities of tfs-ui' />
+          <meta name="description" content="A demo application to show capabilities of tfs-ui" />
         </Helmet>
         <div
           style={{
@@ -64,8 +64,8 @@ class HomeComponent extends React.Component { // eslint-disable-line react/prefe
             }}
             onChange={this.onChange}
           >
-            <option value='tools'>Tools</option>
-            <option value='demo'>Demo</option>
+            <option value="tools">Tools</option>
+            <option value="demo">Demo</option>
           </select>
         </div>
         <div
@@ -106,7 +106,7 @@ class HomeComponent extends React.Component { // eslint-disable-line react/prefe
             Email:
             </span>
             <div>
-              <TextField name='email' type='text' defaultValue={user.email} required />
+              <text name="email" type="text" defaultValue={user.email} required />
             </div>
           </div>
           <div
@@ -116,7 +116,7 @@ class HomeComponent extends React.Component { // eslint-disable-line react/prefe
           >
           Password:
             <div>
-              <TextField name='password' type='text' required />
+              <text name="password" type="text" required />
             </div>
           </div>
           <br />
@@ -128,7 +128,7 @@ class HomeComponent extends React.Component { // eslint-disable-line react/prefe
               }}
             >
               <Button
-                type='primary'
+                type="primary"
                 onClick={this.handleClickLogin}
               >
                 <span> Submit </span>

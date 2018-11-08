@@ -9,7 +9,7 @@ import { AppContainer } from 'react-hot-loader';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 
 import { store, persistor } from 'app-store';
-import { showAlert } from 'actions';
+import { showAlert } from 'state/actions';
 
 import '../styles/main.scss';
 
@@ -33,22 +33,21 @@ export const init = {
     return Promise
       .all([this.loadCSS()])
       .then(() => this.render(App))
-      .catch(reason => {
+      .catch((reason) => {
         if (this.fetchRetries < 3) {
           this.fetchRetries++;
           this.run();
         }
-        console.log(reason); //eslint-disable-line no-console
+        console.log(reason); // eslint-disable-line no-console
       });
   },
   loadCSS() {
     /* istanbul ignore next */
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.retryCSS = () => {
         if (this.isCSSLoaded() || this.cssRetries > 2) {
           resolve();
-        }
-        else {
+        } else {
           this.cssRetries++;
           setTimeout(() => {
             this.retryCSS();
@@ -69,17 +68,19 @@ export const init = {
       },
       onUpdated: () => {
         store.dispatch(showAlert((
-          <div className='app__cache-reload'>
+          <div className="app__cache-reload">
             <p>There's a new version of this app!</p>
             <button
-              className='btn btn-sm btn-outline-primary'
+              className="btn btn-sm btn-outline-primary"
               onClick={() => window.location.reload()}
-              type='button'
+              type="button"
             >
               Reload
             </button>
           </div>
-        ), { id: 'sw-update', type: 'primary', icon: 'i-flash', timeout: 0 }));
+        ), {
+          id: 'sw-update', type: 'primary', icon: 'i-flash', timeout: 0
+        }));
       },
     });
   },
@@ -95,8 +96,7 @@ export const init = {
           }
         }
       }
-    }
-    catch (e) {
+    } catch (e) {
       // error
     }
 

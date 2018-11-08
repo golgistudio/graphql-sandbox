@@ -4,10 +4,10 @@ import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 import { replace } from 'react-router-redux';
 
-import { Button } from 'tfs-ui';
+import Button from 'components/Button';
 
 import Header from 'components/Header';
-import { logOut } from 'actions';
+import { logOut } from 'state/actions';
 
 class MainLayoutComponent extends React.Component {
   constructor(props) {
@@ -58,7 +58,7 @@ class MainLayoutComponent extends React.Component {
       <article>
         <Helmet>
           <title>tfs-ui-demo</title>
-          <meta name='description' content='A demo application to show capabilities of tfs-ui' />
+          <meta name="description" content="A demo application to show capabilities of tfs-ui" />
         </Helmet>
         <Header
           onClickLogout={this.onClickLogout}
@@ -72,28 +72,28 @@ class MainLayoutComponent extends React.Component {
           }}
         >
           <Button
-            type='flat'
+            type="flat"
             onClick={this.onClickTable}
           >
             Table
           </Button>
           <div style={this.sepStyles} />
           <Button
-            type='flat'
+            type="flat"
             onClick={this.onClickDialog}
           >
             Dialog
           </Button>
           <div style={this.sepStyles} />
           <Button
-            type='flat'
+            type="flat"
             onClick={this.onClickSandbox}
           >
             Sandbox
           </Button>
         </div>
         <div
-          className='app__private__content'
+          className="app__private__content"
           style={{
             marginTop: '20px',
             textAlign: 'center',

@@ -15,7 +15,7 @@ describe('index/init', () => {
   });
 
   it('should initiate the app', () => {
-    init.run().then(environment => {
+    init.run().then((environment) => {
       expect(environment).toBe('production');
     });
   });

@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import cx from 'classnames';
 import treeChanges from 'tree-changes';
 
-import { Table } from 'tfs-ui';
+import ReactTable from 'react-table';
+import 'react-table/react-table.css';
 
-import { getRepos, showAlert, switchMenu } from 'actions';
+import Button from 'components/Button';
+import { getRepos } from 'state/actions/github';
+import { switchMenu } from 'state/actions/app';
 import { STATUS } from 'constants/index';
 
 import Loader from 'components/Loader';
@@ -18,29 +20,29 @@ class GitHubComponent extends React.Component {
     this.onClickRepo = this.onClickRepo.bind(this);
 
     this.state = {
-      query: 'react',
+      query: 'react'
     };
     this.columns = [
       {
         Header: 'Logo',
-        accessor: 'avatar',
+        accessor: 'avatar'
       },
       {
         Header: 'Name',
-        accessor: 'name',
+        accessor: 'name'
       },
       {
         Header: 'Description',
-        accessor: 'description',
+        accessor: 'description'
       },
       {
         Header: 'Owner',
-        accessor: 'owner',
+        accessor: 'owner'
       },
       {
         Header: 'Stars',
-        accessor: 'stars',
-      },
+        accessor: 'stars'
+      }
     ];
   }
 
@@ -52,11 +54,12 @@ class GitHubComponent extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { dispatch } = this.props;
+    // const { dispatch } = this.props;
     const { changedTo } = treeChanges(this.props, nextProps);
 
     if (changedTo('github.repos.status', STATUS.ERROR)) {
-      dispatch(showAlert(nextProps.github.repos.message, { type: 'error' }));
+      console.log(nextProps.github.repos.message);
+      // dispatch(showAlert(nextProps.github.repos.message, { type: "error" }));
     }
   }
 
@@ -65,7 +68,7 @@ class GitHubComponent extends React.Component {
     const { dispatch } = this.props;
 
     this.setState({
-      query,
+      query
     });
 
     dispatch(switchMenu(query));
@@ -76,6 +79,10 @@ class GitHubComponent extends React.Component {
     const { github } = this.props;
     let output;
 
+    if (!github) {
+      return null;
+    }
+
     if (github.repos.status === STATUS.READY) {
       const rawData = github.repos.data[query];
       if (rawData) {
@@ -83,60 +90,54 @@ class GitHubComponent extends React.Component {
           name: item.name,
           description: item.description,
           owner: item.owner.login,
-          avatar: <img src={item.owner.avatar_url} alt={item.owner.login} style={{ width: '40px' }} />,
-          stars: item.stargazers_count,
+          avatar: (
+            <img
+              src={item.owner.avatar_url}
+              alt={item.owner.login}
+              style={{ width: '40px' }}
+            />
+          ),
+          stars: item.stargazers_count
         }));
 
-        output = (
-          <Table
-            data={gitData}
-            columns={this.columns}
-          />
-        );
-      }
-      else {
+        output = <ReactTable data={gitData} columns={this.columns} />;
+      } else {
         output = <h3>Nothing found</h3>;
       }
-    }
-    else {
+    } else {
       output = <Loader />;
     }
 
     return (
-      <div key='GitHub' className='app__github'>
+      <div key="GitHub" className="app__github">
         <div
-          className='app__github__selector'
+          className="app__github__selector"
           style={{
             textAlign: 'center',
             marginTop: '30px',
-            marginBottom: '20px',
+            marginBottom: '20px'
           }}
         >
-          <div className='btn-group' role='group' aria-label='Basic example'>
-            <button
-              type='button'
-              className={cx('btn', {
-                'btn-primary': query === 'react',
-                'btn-outline-primary': query !== 'react',
-                'btn-loading': query === 'react' && github.repos.status === 'running',
-              })}
-              data-query='react'
+          <div className="btn-group" role="group" aria-label="Basic example">
+            <Button
+              name="react"
+              key="react"
+              type="flat"
+              data-query="react"
               onClick={this.onClickRepo}
             >
               React
-            </button>
-            <button
-              type='button'
-              className={cx('btn', {
-                'btn-primary': query === 'redux',
-                'btn-outline-primary': query !== 'redux',
-                'btn-loading': query === 'redux' && github.repos.status === 'running',
-              })}
-              data-query='redux'
+            </Button>
+            <span> | </span>
+            <Button
+              name="redux"
+              key="redux"
+              type="flat"
+              data-query="redux"
               onClick={this.onClickRepo}
             >
               Redux
-            </button>
+            </Button>
           </div>
         </div>
         {output}
@@ -147,7 +148,7 @@ class GitHubComponent extends React.Component {
 
 GitHubComponent.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  github: PropTypes.object.isRequired,
+  github: PropTypes.object.isRequired
 };
 
 /* istanbul ignore next */

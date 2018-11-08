@@ -9,10 +9,9 @@ import treeChanges from 'tree-changes';
 import history from 'modules/history';
 
 import config from 'config';
-import { showAlert } from 'actions';
+import { showAlert } from 'state/actions';
 
 import Home from 'components/Home';
-import DialogDemo from 'components/DialogDemo';
 import TableDemo from 'components/TableDemo';
 import Sandbox from 'components/Sandbox';
 import NotFound from 'routes/NotFound';
@@ -54,24 +53,16 @@ export class App extends React.Component {
           <Helmet
             defer={false}
             htmlAttributes={{ lang: 'pt-br' }}
-            encodeSpecialCharacters={true}
+            encodeSpecialCharacters
             defaultTitle={config.title}
             titleTemplate={`%s | ${config.name}`}
             titleAttributes={{ itemprop: 'name', lang: 'pt-br' }}
           />
           <main>
             <Switch>
-              <RoutePublic isAuthenticated={user.isAuthenticated} path='/' exact component={Home} />
-              <RoutePrivate isAuthenticated={user.isAuthenticated} path="/theme" component={ThemeExample} layout={SidebarLayout} />
-              <RoutePrivate isAuthenticated={user.isAuthenticated} path="/github" component={GitHub} layout={SidebarLayout} />
-              <RoutePrivate
-                isAuthenticated={user.isAuthenticated}
-                path="/locale"
-                component={LocalizationExample}
-                layout={SidebarLayout}
-              />
-              <RoutePrivate isAuthenticated={user.isAuthenticated} exact path="/fizzbuzz" component={FizzBuzz} layout={SidebarLayout} />
-
+              <RoutePublic isAuthenticated={user.isAuthenticated} path="/" exact component={Home} />
+              <RoutePrivate isAuthenticated={user.isAuthenticated} path="/table" component={TableDemo} layout={MainLayout} />
+              <RoutePrivate isAuthenticated={user.isAuthenticated} path="/sandbox" component={Sandbox} layout={MainLayout} />
               <Route component={NotFound} />
             </Switch>
           </main>

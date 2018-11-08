@@ -9,10 +9,12 @@ module.exports = {
           chrome: '67',
           safari: '11.1',
         },
-        useBuiltIns: 'usage',
+        useBuiltIns: 'entry',
+        modules: false
       },
     ],
-    '@babel/preset-react'
+    '@babel/preset-react',
+    '@babel/preset-flow'
   ],
 
   plugins: [
@@ -22,26 +24,26 @@ module.exports = {
     [
       '@babel/plugin-proposal-optional-chaining',
       {
-        'loose': false
+        loose: false
       }
     ],
     [
       '@babel/plugin-proposal-pipeline-operator',
       {
-        'proposal': 'minimal'
+        proposal: 'minimal'
       }
     ],
     [
       '@babel/plugin-proposal-nullish-coalescing-operator',
       {
-        'loose': false
+        loose: false
       }
     ],
     '@babel/plugin-proposal-do-expressions',
     [
       '@babel/plugin-proposal-decorators',
       {
-        'legacy': true
+        legacy: true
       }
     ],
     '@babel/plugin-proposal-function-sent',
@@ -53,16 +55,16 @@ module.exports = {
     [
       '@babel/plugin-proposal-class-properties',
       {
-        'loose': false
+        loose: false
       }
     ],
     '@babel/plugin-proposal-json-strings',
     '@babel/plugin-transform-runtime'
   ],
-  'compact': true,
-  'env': {
-    'production': {
-      'plugins': [
+  compact: true,
+  env: {
+    production: {
+      plugins: [
         '@babel/plugin-transform-flow-strip-types',
         '@babel/plugin-transform-object-assign',
         'array-includes',
@@ -70,26 +72,25 @@ module.exports = {
         [
           'transform-imports',
           {
-            'lodash': {
-              'transform': 'lodash/${member}',
-              'preventFullImport': true
+            lodash: {
+              transform: 'lodash/${member}',
+              preventFullImport: true
             }
           }
         ]
       ]
     },
-    'development': {
-      'plugins': [
+    development: {
+      plugins: [
         'react-hot-loader/babel'
       ]
     },
-    'test': {
-      'plugins': [
+    test: {
+      plugins: [
         '@babel/transform-modules-commonjs',
         'dynamic-import-node'
       ],
-      'sourceMaps': 'both'
+      sourceMaps: 'both'
     }
   }
-
 };

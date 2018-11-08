@@ -1,4 +1,10 @@
-/*eslint-disable func-names, prefer-arrow-callback, no-console */
+/* eslint-disable
+  func-names,
+  prefer-arrow-callback,
+  no-console,
+  global-require,
+  import/no-dynamic-require
+*/
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'development';
@@ -7,7 +13,7 @@ process.env.NODE_ENV = 'development';
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
 // terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
+process.on('unhandledRejection', (err) => {
   throw err;
 });
 
@@ -48,7 +54,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 // We attempt to use the default port but if it is busy, we offer the user to
 // run on a different port. `detect()` Promise resolves to the next free port.
 choosePort(HOST, DEFAULT_PORT)
-  .then(port => {
+  .then((port) => {
     if (port === null) {
       // We have not found a port.
       return;
@@ -69,11 +75,11 @@ choosePort(HOST, DEFAULT_PORT)
 
     let start;
 
-    compiler.plugin('compile', function() {
+    compiler.plugin('compile', function () {
       start = new Date();
     });
 
-    compiler.plugin('emit', function(compilation, callback) {
+    compiler.plugin('emit', function (compilation, callback) {
       const now = new Date();
       console.log(chalk.yellow(`Duration: ${dateFns.differenceInSeconds(now, start)}s - ${compilation.hash}`));
 
@@ -82,7 +88,7 @@ choosePort(HOST, DEFAULT_PORT)
 
     const devServer = new WebpackDevServer(compiler, serverConfig);
     // Launch WebpackDevServer.
-    devServer.listen(port, HOST, err => {
+    devServer.listen(port, HOST, (err) => {
       if (err) {
         console.log(err);
         return;
@@ -95,14 +101,14 @@ choosePort(HOST, DEFAULT_PORT)
       console.log(chalk.cyan('Starting the development server...'));
     });
 
-    ['SIGINT', 'SIGTERM'].forEach(function(sig) {
-      process.on(sig, function() {
+    ['SIGINT', 'SIGTERM'].forEach(function (sig) {
+      process.on(sig, function () {
         devServer.close();
         process.exit();
       });
     });
   })
-  .catch(err => {
+  .catch((err) => {
     if (err && err.message) {
       console.log(err.message);
     }

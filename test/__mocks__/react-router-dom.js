@@ -18,7 +18,7 @@ export const Link = (props) => {
       href={to.pathname || to}
       className={className}
       style={style}
-      onClick={e => {
+      onClick={(e) => {
         e.preventDefault();
 
         jsdom.reconfigure({
@@ -64,7 +64,7 @@ export const NavLink = (props) => {
   );
 };
 
-export const Redirect = () => (<div id='redirect' />);
+export const Redirect = () => (<div id="redirect" />);
 
 export const Route = RouterRoute;
 export const Switch = RouterSwitch;

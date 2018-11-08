@@ -1,4 +1,4 @@
-/*eslint-disable  func-names, no-param-reassign prefer-arrow-callback, object-shorthand, no-console, prefer-template, vars-on-top */
+/* eslint-disable  func-names, no-param-reassign prefer-arrow-callback, object-shorthand, no-console, prefer-template, vars-on-top */
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanPlugin = require('clean-webpack-plugin');
@@ -28,7 +28,7 @@ const publicUrl = '';
 const env = getClientEnvironment(publicUrl);
 
 let GITHASH = '';
-const definePlugin = webpackConfig.plugins.find(d => d.constructor.name === 'DefinePlugin');
+const definePlugin = webpackConfig.plugins.find((d) => d.constructor.name === 'DefinePlugin');
 if (definePlugin) {
   GITHASH = definePlugin.definitions.GITHASH ? definePlugin.definitions.GITHASH.replace(/"/g, '') : '';
 }
@@ -152,7 +152,7 @@ module.exports = merge.smart(webpackConfig, {
       },
       cacheMaps: [
         {
-          match: function() {
+          match: function () {
             return new URL('/', location);
           },
           requestTypes: ['navigate'],

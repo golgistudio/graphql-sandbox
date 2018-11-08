@@ -1,4 +1,4 @@
-import reducer from 'reducers/user';
+import reducer from 'state/reducers/user';
 import { ActionTypes } from 'constants/index';
 
 describe('User', () => {

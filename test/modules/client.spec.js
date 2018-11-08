@@ -15,56 +15,56 @@ describe('client', () => {
         .toThrow('Error! You must pass `payload`');
     });
 
-    it('should execute a GET successfully', done => {
+    it('should execute a GET successfully', (done) => {
       fetch.mockResponseOnce(JSON.stringify({ hello: 'world' }), global.fetchInit);
 
       request('http://example.com/token')
-        .then(data => {
+        .then((data) => {
           expect(data).toMatchSnapshot();
           done();
         });
     });
 
-    it('should reject for a server error with JSON response', done => {
+    it('should reject for a server error with JSON response', (done) => {
       fetch.mockRejectOnce(JSON.stringify({ error: 'FAILED' }), global.fetchInit);
 
       request('http://example.com/token')
-        .catch(error => {
+        .catch((error) => {
           expect(error.response).toMatchSnapshot();
           done();
         });
     });
 
-    it('should reject for a server error with no response', done => {
+    it('should reject for a server error with no response', (done) => {
       fetch.mockRejectOnce(new Error('Failed to Fetch'));
 
       request('http://example.com/token')
-        .catch(error => {
+        .catch((error) => {
           expect(error.response).toMatchSnapshot();
           done();
         });
     });
 
-    it('should reject for a not found error', done => {
+    it('should reject for a not found error', (done) => {
       fetch.mockRejectOnce(JSON.stringify({ error: 'FAILED' }), {
         ...global.fetchInit,
         status: 404,
       });
 
       request('http://example.com/token')
-        .catch(error => {
+        .catch((error) => {
           expect(error.response).toMatchSnapshot();
           done();
         });
     });
 
-    it.skip('should execute a POST successfully', done => {
+    it.skip('should execute a POST successfully', (done) => {
       fetch.mockResponseOnce(null, {
         status: 201,
       });
 
       request('http://example.com/token', { method: 'POST', payload: { a: 1 } })
-        .then(data => {
+        .then((data) => {
           expect(data).toMatchSnapshot();
           done();
         });

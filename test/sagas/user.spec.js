@@ -5,10 +5,10 @@ import user, { login, logout } from 'sagas/user';
 import { ActionTypes } from 'constants/index';
 
 describe('user', () => {
-  it('should have the expected watchers', done => {
+  it('should have the expected watchers', (done) => {
     expectSaga(user)
       .run({ silenceTimeout: true })
-      .then(saga => {
+      .then((saga) => {
         expect(saga).toMatchSnapshot();
         done();
       });

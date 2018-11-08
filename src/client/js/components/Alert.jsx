@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Alert = ({ children, handleClickClose, id, icon, type }) => {
+const Alert = ({
+  children, handleClickClose, id, icon, type
+}) => {
   const output = {};
   const typeClass = type ? ` is-${type}` : '';
 
@@ -34,22 +36,22 @@ const Alert = ({ children, handleClickClose, id, icon, type }) => {
   if (handleClickClose) {
     output.button = (
       <button
-        className='app__alert__close'
+        className="app__alert__close"
         data-id={id}
         onClick={handleClickClose}
-        type='button'
+        type="button"
       >
-        <i className='i-times' />
+        <i className="i-times" />
       </button>
     );
   }
 
   return (
     <div className={`app__alert${typeClass}`}>
-      <div className='app__alert__icon'>
+      <div className="app__alert__icon">
         <i className={output.icon} />
       </div>
-      <div className='app__alert__content'>{children}</div>
+      <div className="app__alert__content">{children}</div>
       {output.button}
     </div>
   );

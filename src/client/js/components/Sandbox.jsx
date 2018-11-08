@@ -4,7 +4,7 @@ class Documentation extends React.PureComponent {
   render() {
     return (
       <div
-        className='app__private__content'
+        className="app__private__content"
         style={{
           marginTop: '20px',
           textAlign: 'center',

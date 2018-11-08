@@ -1,4 +1,4 @@
-/*eslint-disable no-console */
+/* eslint-disable no-console */
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
@@ -103,6 +103,10 @@ module.exports = {
       },
       {
         test: /\.scss$/,
+        loader: cssLoaders,
+      },
+      {
+        test: /\.css$/,
         loader: cssLoaders,
       },
       {

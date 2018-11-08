@@ -1,4 +1,4 @@
-import { hideAlert, showAlert } from 'actions/app';
+import { hideAlert, showAlert } from 'state/actions/app';
 
 describe('App', () => {
   it('showAlert with type `error` should return an action', () => {

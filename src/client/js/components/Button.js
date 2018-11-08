@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-import Radium from "radium";
-import ThemeWrapper from "../themes/ThemeWrapper";
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import Radium from 'radium';
+import ThemeWrapper from 'themes/ThemeWrapper';
 
 class Button extends PureComponent {
   render() {
@@ -40,7 +40,7 @@ class Button extends PureComponent {
 
 Button.propTypes = {
   name: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["primary", "secondary", "flat"]),
+  type: PropTypes.oneOf(['primary', 'secondary', 'flat']),
   disabled: PropTypes.bool,
   tabIndex: PropTypes.number,
   children: PropTypes.node.isRequired,
@@ -49,7 +49,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  type: "primary",
+  type: 'primary',
   disabled: false,
   tabIndex: 0,
   themeStyle: {},

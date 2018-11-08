@@ -9,7 +9,7 @@ describe('modules/RoutePrivate', () => {
       <Router initialEntries={['/table']}>
         <RoutePrivate
           exact
-          path='/table'
+          path="/table"
           component={() => (<div>PRIVATE</div>)}
           isAuthenticated={false}
         />
@@ -23,9 +23,9 @@ describe('modules/RoutePrivate', () => {
       <Router initialEntries={['/table']}>
         <RoutePrivate
           exact
-          path='/table'
+          path="/table"
           component={() => (<div>PRIVATE</div>)}
-          isAuthenticated={true}
+          isAuthenticated
           layout={() => (<div>Layout</div>)}
         />
       </Router>

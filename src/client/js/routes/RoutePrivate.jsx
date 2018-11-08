@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
-const RoutePrivate = ({ layout: Layout, component: Component, isAuthenticated, to, ...rest }) => (
+const RoutePrivate = ({
+  layout: Layout, component: Component, isAuthenticated, to, ...rest
+}) => (
   <Route
     {...rest}
-    render={props => (
+    render={(props) => (
       isAuthenticated
         ? (
           <Layout {...props}>

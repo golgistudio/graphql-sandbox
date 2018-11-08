@@ -9,7 +9,9 @@ import { createActions } from 'redux-actions';
 
 import { ActionTypes } from 'constants/index';
 
-export { goBack, goForward, push, replace } from 'connected-react-router';
+export {
+  goBack, goForward, push, replace
+} from 'connected-react-router';
 
 export const {
   hideAlert,
@@ -27,7 +29,7 @@ export const {
       message,
       position: options.position || 'bottom-right',
       type: options.type,
-      timeout: !isNaN(options.timeout) ? options.timeout : timeout,
+      timeout: !Number.isNaN(options.timeout) ? options.timeout : timeout,
     };
   },
 });

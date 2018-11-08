@@ -19,7 +19,7 @@ react.style.height = '100vh';
 document.body.appendChild(react);
 
 const consoleError = console.error;
-console.error = jest.fn(message => {
+console.error = jest.fn((message) => {
   const skipMessages = [
     'redux-persist failed to create sync storage.',
   ];
@@ -37,8 +37,8 @@ console.error = jest.fn(message => {
 });
 
 global.getSaga = (sagas, action) => sagas
-  .filter(d => d.FORK.args[0] === action)
-  .map(d => d.FORK.args[1])
+  .filter((d) => d.FORK.args[0] === action)
+  .map((d) => d.FORK.args[1])
   .reduce((acc, d) => d);
 
 global.navigate = (options) => {

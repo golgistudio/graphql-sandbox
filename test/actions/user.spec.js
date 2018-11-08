@@ -1,4 +1,4 @@
-import { login, logOut } from 'actions/user';
+import { login, logOut } from 'state/actions/user';
 
 describe('App', () => {
   it('login should return an action', () => {
